@@ -3,3 +3,16 @@ This is a companion package for [ryannhg/date-format](http://package.elm-lang.or
 
 ## Usage
 Just import `DateFormat.Languages` and use them in the `date-format` package.
+
+## Currently available languages
+
+* Dutch
+* English
+* Finnish
+* French
+* Greek
+* Italian
+* Norwegian
+* Portuguese
+* Spanish
+* Swedish
