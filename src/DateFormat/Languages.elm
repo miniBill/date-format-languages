@@ -1,6 +1,6 @@
 module DateFormat.Languages exposing
     ( Language
-    , english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek
+    , english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek, italian
     )
 
 {-|
@@ -22,7 +22,7 @@ This module exposes `Language`, along with a few implementations.
 
 ### Languages
 
-@docs english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek
+@docs english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek, italian
 
 -}
 
@@ -915,3 +915,105 @@ greek =
         (toGreekWeekdayName >> String.left 3)
         toGreekAmPm
         toGreekSuffix
+
+
+
+-- Italian
+
+
+toItalianMonthName : Month -> String
+toItalianMonthName month =
+    case month of
+        Jan ->
+            "Gennaio"
+
+        Feb ->
+            "Febbraio"
+
+        Mar ->
+            "Marzo"
+
+        Apr ->
+            "Aprile"
+
+        May ->
+            "Maggio"
+
+        Jun ->
+            "Giugno"
+
+        Jul ->
+            "Luglio"
+
+        Aug ->
+            "Agosto"
+
+        Sep ->
+            "Settembre"
+
+        Oct ->
+            "Ottobre"
+
+        Nov ->
+            "Novembre"
+
+        Dec ->
+            "Dicembre"
+
+
+toItalianWeekdayName : Weekday -> String
+toItalianWeekdayName weekday =
+    case weekday of
+        Mon ->
+            "Lunedì"
+
+        Tue ->
+            "Martedì"
+
+        Wed ->
+            "Mercoledì"
+
+        Thu ->
+            "Giovedì"
+
+        Fri ->
+            "Venerdì"
+
+        Sat ->
+            "Sabato"
+
+        Sun ->
+            "Domenica"
+
+
+toItalianAmPm : Int -> String
+toItalianAmPm hour =
+    if hour > 11 then
+        "PM"
+
+    else
+        "AM"
+
+
+toItalianSuffix : Int -> String
+toItalianSuffix num =
+    ""
+
+
+{-| The italian language!
+-}
+italian : Language
+italian =
+    Language
+        toItalianMonthName
+        (\month ->
+            if List.member month [ Jun, Jul ] then
+                (toItalianMonthName >> String.left 4) month
+
+            else
+                (toItalianMonthName >> String.left 3) month
+        )
+        toItalianWeekdayName
+        (toItalianWeekdayName >> String.left 3)
+        toItalianAmPm
+        toItalianSuffix
