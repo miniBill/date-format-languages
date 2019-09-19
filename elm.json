@@ -3,7 +3,7 @@
     "name": "miniBill/date-format-languages",
     "summary": "Companion package for ryannhg/date-format. This package contains the languages.",
     "license": "BSD-3-Clause",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "exposed-modules": [
         "DateFormat.Languages"
     ],
