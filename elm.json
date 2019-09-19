@@ -3,15 +3,14 @@
     "name": "miniBill/date-format-languages",
     "summary": "Companion package for ryannhg/date-format. This package contains the languages.",
     "license": "BSD-3-Clause",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "exposed-modules": [
         "DateFormat.Languages"
     ],
     "elm-version": "0.19.0 <= v < 0.20.0",
     "dependencies": {
         "elm/core": "1.0.0 <= v < 2.0.0",
-        "elm/time": "1.0.0 <= v < 2.0.0",
-        "ryannhg/date-format": "2.0.0 <= v < 2.3.0"
+        "elm/time": "1.0.0 <= v < 2.0.0"
     },
     "test-dependencies": {}
 }

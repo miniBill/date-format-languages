@@ -1,6 +1,7 @@
 module DateFormat.Languages exposing
     ( Language
     , english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek, italian
+    , DateLanguage, toDateLanguage
     )
 
 {-|
@@ -10,7 +11,7 @@ module DateFormat.Languages exposing
 
 That's why it's important to include alternative date formatting options for other languages!
 
-This module exposes `Language`, along with a few implementations.
+This module exposes `Language` (compatible with `ryannhg/date-format`) and `DateLanguage` (compatible with `justinmimbs/date`), along with a few implementations.
 
 (If you want to see `german` or `swahili`, please add them in! I'm happy to make your language a part of the package!)
 
@@ -24,12 +25,17 @@ This module exposes `Language`, along with a few implementations.
 
 @docs english, spanish, dutch, swedish, portuguese, french, finnish, norwegian, greek, italian
 
+
+### Compatibility
+
+@docs DateLanguage, toDateLanguage
+
 -}
 
 import Time exposing (Month(..), Weekday(..))
 
 
-{-| A record with options for your language.
+{-| A record with options for your language. Compatible with `ryannhg/date-format`.
 -}
 type alias Language =
     { toMonthName : Month -> String
@@ -1017,3 +1023,30 @@ italian =
         (toItalianWeekdayName >> String.left 3)
         toItalianAmPm
         toItalianSuffix
+
+
+
+-- COMPATIBILITY with justinmimbs/date
+
+
+{-| A record with options for your language. Compatible with `justinmimbs/date`.
+-}
+type alias DateLanguage =
+    { monthName : Month -> String
+    , monthNameShort : Month -> String
+    , weekdayName : Weekday -> String
+    , weekdayNameShort : Weekday -> String
+    , dayWithSuffix : Int -> String
+    }
+
+
+{-| This converts a `Language` do a `DateLanguage`
+-}
+toDateLanguage : Language -> DateLanguage
+toDateLanguage { toMonthName, toMonthAbbreviation, toWeekdayName, toWeekdayAbbreviation, toOrdinalSuffix } =
+    { monthName = toMonthName
+    , monthNameShort = toMonthAbbreviation
+    , weekdayName = toWeekdayName
+    , weekdayNameShort = toWeekdayAbbreviation
+    , dayWithSuffix = \n -> String.fromInt n ++ toOrdinalSuffix n
+    }
